@@ -1,0 +1,11 @@
+{
+    "imports": {
+        "oak": "https://deno.land/x/oak@v11.1.0/mod.ts",
+        "oak/": "https://deno.land/x/oak@v11.1.0/",
+        "src/": "./src/",
+        "middlewares/": "./src/middlewares/",
+        "controllers/": "./src/controllers/",
+        "routes/": "./src/routes/",
+        "utils/": "./src/utils/"
+    }
+}
