@@ -6,7 +6,7 @@ const path = '/emojis'
 
 router
     .get(`${path}`, getEmojis)
-    .get(`${path}/:eid`, getEmoji)
     .get(`${path}/sweet-failure`, sweetFailure)
+    .get(`${path}/:eid`, getEmoji)
 
 export default router
