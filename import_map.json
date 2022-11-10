@@ -10,6 +10,8 @@
         "models/": "./src/models/",
         "mongo": "https://deno.land/x/mongo@v0.31.1/mod.ts",
         "mongo/": "https://deno.land/x/mongo@v0.31.1/",
-        "config/": "./src/config/"
+        "config/": "./src/config/",
+        "oakCors": "https://deno.land/x/cors@v1.2.2/mod.ts",
+        "dotenv": "https://deno.land/x/dotenv@v3.2.0/mod.ts"
     }
 }

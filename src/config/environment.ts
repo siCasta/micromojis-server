@@ -1,4 +1,8 @@
+import { config } from 'dotenv'
+
+const env = config()
+
 export default {
-    port: parseInt(Deno.env.get('PORT')!),
-    mongoURI: `${Deno.env.get('MONGO_URI')}`
+    port: parseInt(env.PORT!),
+    mongoURI: env.MONGO_URI
 }
