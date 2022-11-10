@@ -11,11 +11,11 @@ const staticFiles = (staticPath: string) => {
             (await fileExists(`${staticPath}/index.html`))
         ) {
             await send(ctx, `${req.url.pathname}index.html`, {
-                root: `${staticPath}`,
+                root: `${staticPath}`
             })
         } else if (await fileExists(path))
             await send(ctx, req.url.pathname, {
-                root: `${staticPath}`,
+                root: `${staticPath}`
             })
         else await next()
     }

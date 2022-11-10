@@ -1,1 +1,0 @@
-This is an api for fetching microsoft svg emojis por your web application

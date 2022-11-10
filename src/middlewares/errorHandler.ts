@@ -7,10 +7,12 @@ const errorHandler = async (ctx: Context, next: () => Promise<unknown>) => {
         await next()
     } catch (err) {
         if (isHttpError(err)) {
+            console.log('a')
             res.status = err.status
             res.body = { error: err.message }
         } else {
-            res.status = err.status
+            console.log(err)
+            res.status = 500
             res.body = { error: err.message }
         }
     }
