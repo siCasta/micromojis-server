@@ -16,7 +16,7 @@ export const findEmojis = async (ctx: RouterContext<'/:es'>) => {
     const searchOptions: Filter<EmojiSchema> = {
         $or: [
             {
-                unicodeName: {
+                name: {
                     $regex: `.*${searchParams}.*`
                 }
             },
@@ -42,7 +42,7 @@ export const findEmojis = async (ctx: RouterContext<'/:es'>) => {
         .skip(page * quantity)
         .limit(quantity)
         .sort({
-            unicodeName: 1
+            name: 1
         })
         .toArray()
 

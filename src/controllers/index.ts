@@ -1,5 +1,4 @@
-import { reset } from 'https://deno.land/std@0.152.0/fmt/colors.ts'
-import { RouterContext } from 'https://deno.land/x/oak@v11.1.0/router.ts'
+import { RouterContext } from 'oak'
 
 export const welcome = (ctx: RouterContext<'/'>) => {
     const { response: res, request: req } = ctx

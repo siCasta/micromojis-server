@@ -28,7 +28,7 @@ export const getEmojis = async (ctx: RouterContext<'/'>) => {
         .skip(page * quantity)
         .limit(quantity)
         .sort({
-            unicodeName: 1
+            name: 1
         })
         .toArray()
 
@@ -47,16 +47,16 @@ export const getEmojis = async (ctx: RouterContext<'/'>) => {
 export const getEmoji = async (ctx: RouterContext<'/:es'>) => {
     const { response: res, request: req } = ctx
 
-    const pEmoji = ctx.params.es
+    const searchParams = ctx.params.es
 
     const emoji = await EmojiCollection.findOne(
         {
             $or: [
                 {
-                    unicodeName: pEmoji
+                    name: searchParams
                 },
                 {
-                    slug: pEmoji
+                    slug: searchParams
                 }
             ]
         },
