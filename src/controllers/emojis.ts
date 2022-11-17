@@ -1,8 +1,9 @@
 import { RouterContext } from 'oak'
-import { ObjectId } from 'mongo'
+import { Filter, ObjectId } from 'mongo'
 
 import EmojiCollection from 'models/Emoji.ts'
 import { convertEmojis } from 'utils/functions.ts'
+import { EmojiSchema } from 'types/emojis.d.ts'
 
 export const sweetFailure = (ctx: RouterContext<'/sweet-failure'>) => {
     ctx.throw(500, "That's suppose to happen don't worry 🍦")
@@ -45,12 +46,22 @@ export const getEmojis = async (ctx: RouterContext<'/'>) => {
     }
 }
 
-export const getEmoji = async (ctx: RouterContext<'/:eid'>) => {
+export const getEmoji = async (ctx: RouterContext<'/:es'>) => {
     const { response: res, request: req } = ctx
 
-    const _id = new ObjectId(ctx.params.eid)
+    const pEmoji = ctx.params.es
+
     const emoji = await EmojiCollection.findOne(
-        { _id },
+        {
+            $or: [
+                {
+                    unicodeName: pEmoji
+                },
+                {
+                    slug: pEmoji
+                }
+            ]
+        },
         {
             projection: {
                 _id: 0

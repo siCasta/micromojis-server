@@ -8,7 +8,7 @@ const subRouter = new Router()
 subRouter
     .get('/', getEmojis)
     .get('/sweet-failure', sweetFailure)
-    .get('/:eid', getEmoji)
+    .get('/:es', getEmoji)
 
 router.use('/emojis', subRouter.routes())
 

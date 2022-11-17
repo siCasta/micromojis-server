@@ -8,6 +8,7 @@ import errorHandler from './middlewares/errorHandler.ts'
 
 import emojisRoutes from 'routes/emojis.ts'
 import searchRoutes from 'routes/search.ts'
+import indexRoutes from 'routes/index.ts'
 
 const app = new Application()
 
@@ -18,6 +19,9 @@ app.use(errorHandler)
 app.use(staticFiles(`${Deno.cwd()}/public`))
 
 // routes
+// ---- /
+app.use(indexRoutes.routes())
+app.use(indexRoutes.allowedMethods())
 // ---- /emojis
 app.use(emojisRoutes.routes())
 app.use(emojisRoutes.allowedMethods())
