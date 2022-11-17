@@ -1,9 +1,7 @@
 import { RouterContext } from 'oak'
-import { Filter, ObjectId } from 'mongo'
 
 import EmojiCollection from 'models/Emoji.ts'
 import { convertEmojis } from 'utils/functions.ts'
-import { EmojiSchema } from 'types/emojis.d.ts'
 
 export const sweetFailure = (ctx: RouterContext<'/sweet-failure'>) => {
     ctx.throw(500, "That's suppose to happen don't worry 🍦")
