@@ -17,6 +17,6 @@ export const convertEmojis = (emojis: Array<EmojiSchema>, req: Request) => {
         ...emoji,
         _id: undefined,
         emoji: `${req.url.origin}${emoji.emoji}`,
-        url: `${req.url.origin}/emojis/${emoji._id.toString()}`
+        url: `${req.url.origin}/emojis/${emoji.slug}`
     })) as Array<EmojiResponse>
 }
