@@ -1,8 +1,8 @@
 import { RouterContext } from 'oak'
-import EmojiCollection from 'models/Emoji.ts'
 import { ObjectId } from 'mongo'
+
+import EmojiCollection from 'models/Emoji.ts'
 import { convertEmojis } from 'utils/functions.ts'
-import { EmojiSchema } from '../types/emojis.d.ts'
 
 export const sweetFailure = (ctx: RouterContext<'/sweet-failure'>) => {
     ctx.throw(500, "That's suppose to happen don't worry 🍦")
@@ -11,8 +11,10 @@ export const sweetFailure = (ctx: RouterContext<'/sweet-failure'>) => {
 export const getEmojis = async (ctx: RouterContext<'/'>) => {
     const { response: res, request: req } = ctx
     const { searchParams: query } = req.url
+
     const pParam = query.get('page')! || 1
     const qParam = query.get('emojis')! || 100
+
     const page = parseInt(pParam as string) - 1
     const emojisLength = await EmojiCollection.countDocuments()
     const quantity =
@@ -45,8 +47,8 @@ export const getEmojis = async (ctx: RouterContext<'/'>) => {
 
 export const getEmoji = async (ctx: RouterContext<'/:eid'>) => {
     const { response: res, request: req } = ctx
-    const _id = new ObjectId(ctx.params.eid)
 
+    const _id = new ObjectId(ctx.params.eid)
     const emoji = await EmojiCollection.findOne(
         { _id },
         {
@@ -56,7 +58,7 @@ export const getEmoji = async (ctx: RouterContext<'/:eid'>) => {
         }
     )
 
-    if (!emoji) ctx.throw(404, 'Oppss! Not found 😶‍🌫️')
+    if (!emoji) ctx.throw(404, 'Oppss! Noting here 😶‍🌫️')
 
     emoji.emoji = `${req.url.origin}${emoji.emoji}`
 
@@ -64,18 +66,5 @@ export const getEmoji = async (ctx: RouterContext<'/:eid'>) => {
     res.body = {
         message: 'Yup you got the emoji successfully 😊',
         emoji
-    }
-}
-
-export const postEmoji = async (ctx: RouterContext<'/'>) => {
-    const { response: res, request: req } = ctx
-
-    const emoji: EmojiSchema = await req.body().value
-
-    await EmojiCollection.insertOne(emoji)
-
-    res.status = 200
-    res.body = {
-        message: 'good'
     }
 }

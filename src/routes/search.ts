@@ -1,4 +1,5 @@
 import { Router } from 'oak'
+
 import { findEmojis } from 'controllers/search.ts'
 
 const router = new Router()
