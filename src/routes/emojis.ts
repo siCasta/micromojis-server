@@ -1,12 +1,20 @@
 import { Router } from 'oak'
-import { getEmoji, getEmojis, sweetFailure } from 'controllers/emojis.ts'
+import {
+    getEmoji,
+    getEmojis,
+    postEmoji,
+    sweetFailure
+} from 'controllers/emojis.ts'
 
 const router = new Router()
-const path = '/emojis'
+const subRouter = new Router()
 
-router
-    .get(`${path}`, getEmojis)
-    .get(`${path}/sweet-failure`, sweetFailure)
-    .get(`${path}/:eid`, getEmoji)
+subRouter
+    .get('/', getEmojis)
+    .get('/sweet-failure', sweetFailure)
+    .get('/:eid', getEmoji)
+    .post('/', postEmoji)
+
+router.use('/emojis', subRouter.routes())
 
 export default router
